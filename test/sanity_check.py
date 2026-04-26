@@ -168,12 +168,16 @@ if __name__ == '__main__':
         LIST_SEQ_TO_TEST[i]["path"] = os.path.dirname(__file__) + LIST_SEQ_TO_TEST[i]["path"]
 
     TEST_WORKDIR = os.path.dirname(__file__) + '/test-workdir/'
+    subprocess.call(f"rm -f {TEST_WORKDIR}/*/*", shell=True)
+    subprocess.call(f"rmdir {TEST_WORKDIR}/*", shell=True)
 
     msg = "Final sanity check results:\n\n'"
     # For each sequence, measure that there is not much deviation between the
     # encoder logs and what we obtain at the decoder side.
     for seq_to_test in LIST_SEQ_TO_TEST:
         # Clean everything in TEST_WORKDIR
+        TEST_WORKDIR = f"{TEST_WORKDIR}{os.path.basename(seq_to_test.get('path'))}/"
+        os.makedirs(TEST_WORKDIR, exist_ok=True)
         subprocess.call(f"rm -f {TEST_WORKDIR}/*", shell=True)
 
         seq_path = seq_to_test.get("path")
@@ -224,6 +228,7 @@ if __name__ == '__main__':
             f"({dec_rate_bpp:5.3f} bpp) is greater than the expected threshold: "
             f"+/- {100 * ratio_rate:.2f} %."
         )
+        TEST_WORKDIR = os.path.dirname(__file__) + '/test-workdir/'
 
     msg += "\nSanity check completed successfully!"
     print(msg)
