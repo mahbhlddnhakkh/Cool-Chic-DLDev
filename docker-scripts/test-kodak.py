@@ -111,7 +111,7 @@ if __name__ == "__main__":
         os.makedirs(test_workdir_tmp, exist_ok=True)
         shutil.copyfile(subject.get("path"), os.path.join(test_workdir_tmp, subject.get('filename')))
         for lmbda_i, lmbda in enumerate(test_lambdas):
-            print(subject.get('filename'), lmbda)
+            print(subject.get('filename'), lmbda, flush=True)
             test_workdir_tmp = os.path.join(test_workdir, subject.get('filename'), str(lmbda))
             os.makedirs(test_workdir_tmp, exist_ok=True)
             subprocess.call(f"rm -f {test_workdir_tmp}/*", shell=True)
@@ -160,7 +160,7 @@ if __name__ == "__main__":
             assert abs(delta_test_psnr) <= threshold_delta_test_psnr, (
                 f"Difference between the tested PSNR "
                 f"({subject['psnr-results'][lmbda_i]:5.3f} dB) and the actual PSNR "
-                f"({dec_psnr_db}) dB is greater than expected threshold: "
+                f"({dec_psnr_db:5.3f}) dB is greater than expected threshold: "
                 f"+/- {threshold_delta_test_psnr:.2f} dB."
             )
             delta_test_bitrate = subject["bitrate-results"][lmbda_i] - dec_rate_bpp
@@ -169,7 +169,7 @@ if __name__ == "__main__":
                 f"Difference between the tested rate "
                 f"({subject['bitrate-results'][lmbda_i]:5.3f} bpp) and the actual rate "
                 f"({dec_rate_bpp:5.3f} bpp) is greater than the expected threshold: "
-                f"+/- {100 * threshold_delta_test_bitrate:.2f} %."
+                f"+/- {threshold_delta_test_bitrate:.2f} bpp."
             )
     print(test_subjects)
     print("TESTS DONE!")
