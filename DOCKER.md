@@ -5,7 +5,7 @@
 - Ensure that docker or podman (aliased as docker) is installed with optional CUDA support
 - ~2 GBs of free RAM
 - ~12 GBs of free disk space
-- CUDA GPU ~1 GB of free VRAM (the cpu runtime doesn't work)
+- CUDA 11.7.1+ GPU ~1 GB of free VRAM (the cpu runtime doesn't work)
 - bash (optional, but would be really nice)
 - time (~9 mins to build image + ~22 mins to test = ~31 mins on 8 core CPU + 2 GB VRAM and 100 Mbit/s internet)
 - r0k.us (for kodak dataset), pypi.org and download.pytorch.org to be available
@@ -22,12 +22,12 @@ docker build -t cool-chic .
 
 GPU (CUDA, fast):
 ```bash
-# Replace `~/dataset-tests-res/` with the directory you want to save the results to
+# Replace `~/dataset-tests-res/` with the directory you want to save the results to (the results are ~30 MB)
 sh test-docker-container-gpu.sh cool-chic ~/dataset-tests-res/
 ```
-CPU (doesn't work):
+CPU (**doesn't work**):
 ```bash
-# Replace `~/dataset-tests-res/` with the directory you want to save the results to
+# Replace `~/dataset-tests-res/` with the directory you want to save the results to (the results are ~30 MB)
 sh test-docker-container-cpu.sh cool-chic ~/dataset-tests-res/
 ```
 
@@ -39,7 +39,7 @@ With CUDA GPU:
 ```bash
 docker create cool-chic --gpus all
 ```
-CPU only (doesn't work):
+CPU only (**doesn't work**):
 ```bash
 docker create cool-chic
 ```
@@ -48,7 +48,7 @@ Copy the printed hash and replace `$id` with the hash (or set the variable with 
 
 ```bash
 docker start -a $id
-# Replace `~/dataset-tests-res/` with the directory you want to save the results to
+# Replace `~/dataset-tests-res/` with the directory you want to save the results to (the results are ~30 MB)
 docker cp $id:/code/dataset-tests-res/ ~/dataset-tests-res/
 docker rm -v $id
 ```

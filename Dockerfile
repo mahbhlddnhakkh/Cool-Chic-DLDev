@@ -1,5 +1,5 @@
 #FROM python:3.10-slim as BUILDER
-FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04 as BUILDER
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as BUILDER
 
 WORKDIR /code
 
