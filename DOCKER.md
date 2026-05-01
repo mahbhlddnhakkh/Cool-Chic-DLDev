@@ -4,7 +4,7 @@
 
 - Ensure that docker or podman (aliased as docker) is installed with optional CUDA support
 - ~2 GBs of free RAM
-- ~12 GBs of free disk space
+- ~14 GBs of free disk space
 - CUDA 11.7.1+ GPU ~1 GB of free VRAM (the cpu runtime doesn't work)
 - bash (optional, but would be really nice)
 - time (~9 mins to build image + ~22 mins to test = ~31 mins on 8 core CPU + 2 GB VRAM and 100 Mbit/s internet)
