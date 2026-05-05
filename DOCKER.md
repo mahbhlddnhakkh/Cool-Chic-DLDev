@@ -10,6 +10,12 @@
 - time (~9 mins to build image + ~22 mins to test = ~31 mins on 8 core CPU + 2 GB VRAM and 100 Mbit/s internet)
 - r0k.us (for kodak dataset), pypi.org and download.pytorch.org to be available
 
+## Cloning
+
+```bash
+git clone https://github.com/mahbhlddnhakkh/Cool-Chic-DLDev.git --depth 1
+```
+
 ## Building image
 
 ```bash
@@ -37,7 +43,7 @@ Basically do the `test-docker-container-gpu.sh` script manually
 
 With CUDA GPU:
 ```bash
-docker create cool-chic --gpus all
+docker create --gpus all cool-chic
 ```
 CPU only (**doesn't work**):
 ```bash
